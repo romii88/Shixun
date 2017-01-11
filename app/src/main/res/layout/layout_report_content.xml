@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:text="@string/report_content"/>
+    <com.ak.shixun.widget.WordsEditText android:layout_width="match_parent" android:layout_height="wrap_content"
+                                        android:inputType="textMultiLine"
+                                        android:maxLength="1000"
+                                        android:id="@+id/et_report_content" android:hint="@string/report_content_hint"/>
+</LinearLayout>

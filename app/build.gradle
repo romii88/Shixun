@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        applicationId "com.ak.shixun"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 2016120910
+        versionName "2.8.4 Stable"
+
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        config {
+            storeFile file("rong.key")
+            storePassword "Amigo123"
+            keyAlias "RongCloud"
+            keyPassword "Amigo123"
+        }
+    }
+    sourceSets {
+        main {
+            jni.srcDirs = []
+            jniLibs.srcDirs = ['src/main/libs']
+        }
+    }
+    packagingOptions {
+        exclude 'AndroidManifest.xml'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.config //for release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.config //for release
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+
+        abortOnError false
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.android.support:support-v4:23.0.1'
+//    compile 'cn.rongcloud.android:RedPacket:2.8.4'
+    //红包
+//    compile project(':Recognizer')
+//    //语音输入
+//    compile project(':sticker')
+    //表情
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.facebook.stetho:stetho:1.4.1'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.jakewharton.timber:timber:4.3.0'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    compile 'com.umeng.analytics:analytics:latest.integration'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.airbnb.android:epoxy:1.5.0'
+    annotationProcessor 'com.airbnb.android:epoxy-processor:1.5.0'
+    compile project(':IMKit')
+}
